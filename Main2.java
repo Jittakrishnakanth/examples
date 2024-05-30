@@ -1,99 +1,64 @@
-import java.util.HashMap;
-import java.util.Map;
+abstract class HillStations {
+    // Abstract methods to be implemented by subclasses
+    abstract void location();
+    abstract void famousfor();
+}
 
-class User {
-    private String username;
-    private String password;
-    private String email;
-    private String phoneNumber;
-    private String pin;
-
-    public User(String username, String password, String email, String phoneNumber, String pin) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.pin = pin;
+// Define the Manali class that extends HillStations
+class Manali extends HillStations {
+    @Override
+    void location() {
+        System.out.println("Manali is located in Himachal Pradesh");
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getPin() {
-        return pin;
+    @Override
+    void famousfor() {
+        System.out.println("Manali is famous for adventure sports");
     }
 }
 
-class UserManager {
-    private Map<String, User> usersByUsername = new HashMap<>();
-    private Map<String, User> usersByEmail = new HashMap<>();
-    private Map<String, User> usersByPhoneNumber = new HashMap<>();
-
-    public void addUser(User user) {
-        usersByUsername.put(user.getUsername(), user);
-        usersByEmail.put(user.getEmail(), user);
-        usersByPhoneNumber.put(user.getPhoneNumber(), user);
+// Define the Mussoorie class that extends HillStations
+class Mussoorie extends HillStations {
+    @Override
+    void location() {
+        System.out.println("Mussoorie is located in Uttarakhand");
     }
 
-    public boolean authenticate(String username, String password) {
-        User user = usersByUsername.get(username);
-        if (user != null && user.getPassword().equals(password)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean authenticateByEmail(String email, String password) {
-        User user = usersByEmail.get(email);
-        if (user != null && user.getPassword().equals(password)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean authenticateByPhoneNumber(String phoneNumber, String pin) {
-        User user = usersByPhoneNumber.get(phoneNumber);
-        if (user != null && user.getPin().equals(pin)) {
-            return true;
-        }
-        return false;
-    }
-    
-    // Overloaded methods for different combinations of parameters
-    public boolean authenticate(String email, String phoneNumber, String pin) {
-        User user = usersByPhoneNumber.get(phoneNumber);
-        if (user != null && user.getEmail().equals(email) && user.getPin().equals(pin)) {
-            return true;
-        }
-        return false;
+    @Override
+    void famousfor() {
+        System.out.println("Mussoorie is famous for beautiful landscapes");
     }
 }
 
+// Define the Gulmarg class that extends HillStations
+class Gulmarg extends HillStations {
+    @Override
+    void location() {
+        System.out.println("Gulmarg is located in Jammu and Kashmir");
+    }
+
+    @Override
+    void famousfor() {
+        System.out.println("Gulmarg is famous for resorts and beautiful meadows");
+    }
+}
+
+// Main class to test the functionality
 public class Main2{
     public static void main(String[] args) {
-        UserManager userManager = new UserManager();
-        
-        // Adding a user
-        User user = new User("john_doe", "password123", "john.doe@example.com", "1234567890", "4321");
-        userManager.addUser(user);
-        
-        // Authenticating using different methods
-        System.out.println(userManager.authenticate("john_doe", "password123")); // true
-        System.out.println(userManager.authenticateByEmail("john.doe@example.com", "password123")); // true
-        System.out.println(userManager.authenticateByPhoneNumber("1234567890", "4321")); // true
-        System.out.println(userManager.authenticate("john.doe@example.com", "1234567890", "4321")); // true
+        // Create an instance of Manali
+        HillStations hillStation1 = new Manali();
+        hillStation1.location();
+        hillStation1.famousfor();
+
+        // Create an instance of Mussoorie
+        HillStations hillStation2 = new Mussoorie();
+        hillStation2.location();
+        hillStation2.famousfor();
+
+        // Create an instance of Gulmarg
+        HillStations hillStation3 = new Gulmarg();
+        hillStation3.location();
+        hillStation3.famousfor();
     }
 }
