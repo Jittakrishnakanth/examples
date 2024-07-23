@@ -1,10 +1,8 @@
-package krishna;
-
-public class Demo {
-
-	public static void main(String[] args) {
-		System.out.println("hello world");
-
+class  Demo
+{
+	public static void main(String[] args) 
+	{
+		double pi = 3.1456783456;
+		System.out.println("pi="+pi);
 	}
-
 }
